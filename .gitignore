@@ -1,0 +1,8 @@
+node_modules
+.idea
+.env
+.env.test
+.env.dev
+package-lock.json
+dev-docker-compose.yml
+data-volume
