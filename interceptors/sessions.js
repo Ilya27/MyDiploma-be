@@ -3,33 +3,28 @@ const constants = require('../core/helpers/const');
 
 module.exports = async function (request, response, next) {
     request.account = null;
-    const ip = request.headers['x-forwarded-for'] ||
-        request.connection.remoteAddress ||
-        request.socket.remoteAddress ||
-        request.connection.socket.remoteAddress;
-
     const token = request.headers['access-token'] || request.query['access-token'];
 
     try {
         if (token) {
-            const {mongoSessions} = require("../db/models");
-            let session = await mongoSessions.findOne({
+            const {Sessions} = require("../db/models");
+            let session = await Sessions.findOne({
                 token,
                 status: constants.statuses.SESSION_STATUS.ACTIVE
             }).populate('account');
 
             if (isSessionExpired(session, request.app_config.session.time)) {
                 session = await closeSession(session, constants.statuses.SESSION_STATUS.EXPIRED);
-            } else if (isUserStatusBlocked(session) || isWrongIpAddress(session, ip)) {
+            } else if (isUserStatusBlocked(session)) {
                 session = await closeSession(session, constants.statuses.SESSION_STATUS.CLOSED);
             }
 
             // update session expiration time
             if (session && session.status === constants.statuses.SESSION_STATUS.ACTIVE) {
-                session = await mongoSessions.findByIdAndUpdate(
+                session = await Sessions.findByIdAndUpdate(
                     session._id,
                     {creationDate: new Date().getTime()})
-                    .populate('subject');
+                    .populate('account');
             }
 
             request.session = session;
@@ -41,10 +36,6 @@ module.exports = async function (request, response, next) {
         next(new Errors(e.message, 500))
     }
 };
-
-function isWrongIpAddress(session, ip) {
-    return session && session.ipAddress !== ip;
-}
 
 function isSessionExpired(session, sessionExpirationTime) {
     return session && session.creationDate < new Date().getTime() - sessionExpirationTime

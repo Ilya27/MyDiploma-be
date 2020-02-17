@@ -14,6 +14,14 @@ const structure = {
     email: {
         type: String,
         require: true,
+        unique: true,
+        sparse: true,
+    },
+
+    role: {
+        type: String,
+        require: true,
+        enum:['ADMIN','COMPANY','CUSTOMER']
     },
 
     stripeId: {
@@ -28,6 +36,7 @@ const structure = {
 
     password: {
         type: String,
+        require: true,
     },
 
     salt: {

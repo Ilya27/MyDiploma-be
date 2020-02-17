@@ -3,8 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const schemas = require('./schemas/recoverySchema');
 const Errors = require('../../core/Errors');
-const {mongoPasswordReset, mongoProviders, mongoMembers} = require('../../db/models');
-const Mailer = require('../../core/mailer/');
 const constants = require("../../core/helpers/const");
 
 
@@ -18,6 +16,7 @@ const actions = {
         if (!provider) {
             throw new Errors('Email does not exist', 404);
         }
+
 
         // close previous request
         await mongoPasswordReset.findOneAndUpdate({

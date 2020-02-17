@@ -18,13 +18,16 @@ async function runServer() {
         console.log(`Connected to mongoDB ${colors.font.Green}`, 'successfully');
 
         // TODO remove later
-        const {mongoAdmins} = require('./db/models');
-        const count = await mongoAdmins.count();
+        const {Accounts} = require('./db/models');
+        const count = await Accounts.count();
         if (count < 1) {
-            await mongoAdmins.insert({
-                login: config.api.defaultAdminLogin,
-                password: config.api.defaultAdminPassword,
-                email: config.api.defaultAdminEmail,
+            await Accounts.insert({
+                login:'admin',
+                password: 'admin',
+                email: 'test@gmail.com',
+                role:'ADMIN',
+                stripeId:'111',
+                phoneNumber:'111'
             })
         }
 

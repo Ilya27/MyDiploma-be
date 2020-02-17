@@ -1,7 +1,6 @@
 const { isAuthorized, checkGroup } = require("./middleware/");
 
 const config = require("./config");
-const PdfGenerator = require("./core/helpers/PdfGenerator");
 const constants = require("./core/helpers/const");
 
 module.exports = function(app) {

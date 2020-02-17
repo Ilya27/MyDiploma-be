@@ -19,7 +19,7 @@ before(async function (done) {
     console.log('Drop TEST database');
     await connection.connection.db.dropDatabase();
 
-    const {mongoSessions, mongoAdmins, mongoProviders, mongoMembers} = require('../db/models');
+  /*  const {mongoSessions, mongoAdmins, mongoProviders, mongoMembers} = require('../db/models');
 
     const testAdmin = await mongoAdmins.insert({login: 'testAdmin', password: 'testAdmin', email: 'qwerty@qwerty.qwe'});
     console.log(`admin created`);
@@ -183,7 +183,7 @@ before(async function (done) {
         ipAddress: "::ffff:127.0.0.1",
     });
     await unregisteredMember2Session.save();
-    console.log(`second unregistered member session created`);
+    console.log(`second unregistered member session created`);*/
 
     await connection.disconnect();
 
