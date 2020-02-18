@@ -19,7 +19,7 @@ switch (process.env.NODE_ENV) {
 }
 
 if(!fs.existsSync(envFilePath)) {
-    throw new Error(envFilePath + 'file not exist');
+    throw new Error(envFilePath + ' file not exist');
 }
 
 console.info(`config mode: ${colors.font[color]}`, (process.env.NODE_ENV || 'development').toUpperCase());

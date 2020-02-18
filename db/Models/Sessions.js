@@ -31,15 +31,15 @@ const staticMethods = {};
 const methods = {};
 
 
-staticMethods.insert = function ({subject = null, group}) {
+staticMethods.insert = function ({account = null, group}) {
     let Model = this;
 
-    let token = this.generateToken(subject._id);
+    let token = this.generateToken(account._id);
 
     let data = {
         token,
         status: constants.statuses.SESSION_STATUS.ACTIVE,
-        subject: subject._id,
+        account: account._id,
         group,
         creationDate: new Date().getTime(),
     };

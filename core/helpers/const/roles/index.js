@@ -1,5 +1,4 @@
 module.exports = {
-
     GROUPS:{
         ADMINS:"Admins",
         CUSTOMERS:"Customers",

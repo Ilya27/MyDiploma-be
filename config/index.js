@@ -36,7 +36,7 @@ module.exports = {
     },
 
     session: {
-        time: 1000 * 60 * 100, // 10 min
+        time: 1000 * 60 * 43800, // 1 month
     },
 
     listing: {
