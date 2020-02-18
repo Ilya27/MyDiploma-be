@@ -42,6 +42,13 @@ const structure = {
     salt: {
         type: String,
     },
+
+    status: {
+        type: String,
+        enum: ['active', 'blocked', 'deleted'],
+        default: 'active'
+    }
+
 };
 
 const methods = {
