@@ -21,7 +21,7 @@ module.exports = {
     server: {
         host: 'localhost',
         port: process.env.APP_PORT || 3000,
-        saltKey: 'thexxtheeetheeeblablabla', //Do not change after deploy
+        saltKey: 'blablablathexxtheeetheee', //Do not change after deploy
     },
 
     mailer: {
