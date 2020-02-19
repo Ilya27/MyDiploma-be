@@ -1,5 +1,6 @@
 const {Schema} = require('mongoose');
 const ModelFactory = require('../../core/ModelFactory');
+const constants = require('../../core/helpers/const');
 const {specialMethods} = require('../modelHelpers/');
 
 const MODEL_NAME = 'Accounts';
@@ -41,7 +42,11 @@ const structure = {
     role: {
         type: String,
         require: true,
-        enum: ['ADMIN', 'COMPANY', 'CUSTOMER']
+        enum: [
+            constants.roles.GROUPS.ADMIN,
+            constants.roles.GROUPS.COMPANY,
+            constants.roles.GROUPS.CUSTOMER
+        ]
     },
 
     firstName: {
@@ -82,8 +87,8 @@ const structure = {
 
     status: {
         type: String,
-        enum: ['active', 'blocked', 'deleted'],
-        default: 'active'
+        enum: [constants.accountStatuses.GROUPS.ACTIVE,constants.accountStatuses.GROUPS.BLOCKED],
+        default: constants.accountStatuses.GROUPS.ACTIVE
     },
 
     additional

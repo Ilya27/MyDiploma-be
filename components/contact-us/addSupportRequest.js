@@ -4,7 +4,7 @@ const mailer = require('../../core/mailer');
 
 module.exports = async function (request, response, next) {
     try {
-        console.log(request.session)
+
         const body = await addSupportRequestSchema(request.session).validateAsync(request.body);
 
         let supportRequest = {
