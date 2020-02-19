@@ -1,7 +1,5 @@
 const {Schema} = require('mongoose');
 const ModelFactory = require('../../core/ModelFactory');
-const {specialMethods} = require('../modelHelpers/');
-
 const MODEL_NAME = 'Projects';
 
 const details = new Schema(
@@ -102,12 +100,14 @@ const structure = {
 
     status: {
         type: String,
-        enum: ['BRIEFING', 'OPTIONS', 'TARIFF', 'ON_MODERATION', 'ACCEPTED', 'DECLINED']
+        enum: ['ON_MODERATION', 'ACCEPTED', 'DECLINED'],
+        default: 'ON_MODERATION'
     },
 
     paymentStatus: {
         type: String,
-        enum: ['WAIT', 'PAID', 'CANCELED']
+        enum: ['WAIT', 'PAID', 'CANCELED'],
+        default: 'WAIT'
     },
 
     paymentAmount: {
@@ -131,12 +131,8 @@ const structure = {
     },
 
     projectOptions: {
-        type: [Number],
-        ref: 'ProjectOptions',
-    },
-
-    victoryRules: {
-        type: String,
+        type: [Schema.Types.Mixed],
+        //ref: 'ProjectOptions',
     },
 
     isPrizeFund: {

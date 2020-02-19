@@ -15,6 +15,8 @@ module.exports = function(app) {
 
   app.use(config.api.urlPrefix + "/auth", require("./components/auth/"));
 
+  app.use(config.api.urlPrefix + "/projects", require("./components/projects/"));
+
 /*
 
     app.use(
