@@ -22,18 +22,20 @@ async function runServer() {
         const count = await Accounts.count();
         if (count < 1) {
             await Accounts.insert({
-                login:'admin',
-                password: 'admin',
-                email: 'test@gmail.com',
+                login:config.api.defaultAdminLogin,
+                password: config.api.defaultAdminPassword,
+                email: config.api.defaultAdminEmail,
                 role:'ADMIN',
-                stripeId:'111',
-                phoneNumber:'111'
+                stripeId:'--',
+                phoneNumber:'--'
             })
         }
 
         const app = express();
 
         app.use(bodyParser.json());
+
+        global.stripe = require('stripe')(config.external.stripeKey);
 
         app.use((request, response, next) => {
             request.app_config = config;
