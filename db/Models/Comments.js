@@ -1,6 +1,6 @@
 const ModelFactory = require('../../core/ModelFactory');
 
-const MODEL_NAME = 'Files';
+const MODEL_NAME = 'Comments';
 
 const structure = {
 
