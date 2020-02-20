@@ -33,7 +33,7 @@ before(async function (done) {
 
     console.log(`user created`);
 
-    const Session = new Sessions({
+    const session = new Sessions({
         status: 'ACTIVE',
         token: TESTS_USER_TOKEN,
         account: testUser._id,
@@ -41,7 +41,16 @@ before(async function (done) {
 
     });
 
-    await Session.save();
+    const sessionToClose = new Sessions({
+        status: 'ACTIVE',
+        token: TESTS_TOKEN_FOR_CLOSE_SESSION,
+        account: testUser._id,
+        creationDate: new Date().getTime(),
+
+    });
+
+    await session.save();
+    await sessionToClose.save();
     console.log(`user session created`);
 
 

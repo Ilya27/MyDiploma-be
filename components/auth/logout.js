@@ -6,7 +6,6 @@ module.exports = async function (request, response, next) {
   const result = await request.session.save();
 
   response.json({
-    group: result.group,
     token: result.token,
     status: result.status
   });
