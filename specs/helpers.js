@@ -18,6 +18,7 @@ global.frisbyConfig = {
 
 global.TESTS_INVALID_TOKEN = 'invalid_token';
 global.TESTS_USER_TOKEN = 'admin_token';
+global.TEST_CUSTOMER_TOKEN = 'customer_token';
 global.TESTS_TOKEN_FOR_CLOSE_SESSION = 'token_for_close_session';
 global.frisby = icedfrisby;
 global.joi = joi;

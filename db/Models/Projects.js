@@ -1,5 +1,6 @@
 const {Schema} = require('mongoose');
 const ModelFactory = require('../../core/ModelFactory');
+const {projectFields, paymentStatuses} = require('../../core/helpers/const');
 const MODEL_NAME = 'Projects';
 
 const details = new Schema(
@@ -75,7 +76,10 @@ const structure = {
     category: {
         type: String,
         require: true,
-        enum: ['BUILDING', 'RENOVATION']
+        enum: [
+          projectFields.CATEGORIES.BUILDING,
+          projectFields.CATEGORIES.RENOVATION
+        ]
     },
 
     type: {
@@ -100,14 +104,22 @@ const structure = {
 
     status: {
         type: String,
-        enum: ['ON_MODERATION', 'ACCEPTED', 'DECLINED'],
-        default: 'ON_MODERATION'
+        enum: [
+          projectFields.STATUSES.ON_MODERATION,
+          projectFields.STATUSES.ACCEPTED,
+          projectFields.STATUSES.DECLINED
+        ],
+        default: projectFields.STATUSES.ON_MODERATION
     },
 
     paymentStatus: {
         type: String,
-        enum: ['WAIT', 'PAID', 'CANCELED'],
-        default: 'WAIT'
+        enum: [
+          paymentStatuses.STATUSES.CANCELED,
+          paymentStatuses.STATUSES.PAID,
+          paymentStatuses.STATUSES.WAIT
+        ],
+        default: paymentStatuses.STATUSES.WAIT
     },
 
     paymentAmount: {

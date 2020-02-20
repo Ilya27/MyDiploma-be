@@ -1,4 +1,4 @@
-const {Accounts} = require("../../db/models");
+const {Accounts, ProjectOptions, Projects} = require("../../db/models");
 const Errors = require("../../core/Errors");
 const projectsSchema = require("./schemas/createProject");
 
@@ -7,15 +7,21 @@ module.exports = async function (request, response, next) {
   try {
 
     let body = await projectsSchema.validateAsync(request.body, {
-      allowUnknown: true
+      //allowUnknown: true
     });
-    const accountRole = await Accounts.findById(body.owner);
 
-    if(accountRole.role !== 'CUSTOMER') {
-      throw new Errors('You can\'t create a new project', 404)
-    }
+    body['owner'] = request.session.account._id;
+    body['projectOptions'] = await ProjectOptions.find({$or:[{_id: body.projectOptions}, {group: 'init'}]});
 
-    response.json(body, 201);
+    body['paymentAmount'] = body['projectOptions'].reduce((acc, item) => {
+      return acc + item.amount
+    }, 0);
+
+    body['creationDate']= Math.floor(Number(new Date().getTime() / 1000));
+
+    const result = await Projects.insert(body);
+
+    response.json(result, 201);
   } catch (e) {
     return next(e);
   }

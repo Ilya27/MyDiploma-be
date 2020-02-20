@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const {isAuthorized, checkGroup} = require('../../middleware/');
+const {roles} = require('../../core/helpers/const/index');
 
 
 /**
@@ -29,7 +31,7 @@ const router = express.Router();
  *   "__v": 0
  *  }
  */
-router.post('/', require('./newProject'));
+router.post('/', isAuthorized, checkGroup(roles.GROUPS.CUSTOMER), require('./newProject'));
 
 // /**
 //  * @api {delete} /auth/logout logout
