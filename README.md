@@ -1,5 +1,8 @@
 # Faberling
 
+## Database structure ##
+https://www.draw.io/#G1sXOFqn_EuC_Ihf6ND49uuwMRImFil93d
+
 ## Install ##
 coming soon
 
