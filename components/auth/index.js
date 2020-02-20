@@ -32,30 +32,33 @@ const router = express.Router();
  */
 router.post('/authorize', require('./authorize'));
 
-// /**
-//  * @api {delete} /auth/logout logout
-//  *
-//  * @apiGroup Auth
-//  *
-//  * @apiDescription
-//  * Method ends user session and marks the token as invalid.
-//  *
-//  * @apiHeaderExample {json} Header-Example:
-//  *     {
-//  *       "Access-Token": "token"
-//  *     }
-//  *
-//  * @apiPermission anyone with an active token
-//  *
-//  * @apiSuccessExample {json} Success-Response:
-//  *  HTTP/1.1 200 OK
-//  *  {
-//  *    "group": "Providers",
-//  *    "token": "token",
-//  *    "status": "closed"
-//  *  }
-//  */
-// router.delete('/logout', isAuthorized, require('./logout'));
+// TODO add documentation
+router.post('/registration/customer', require('./customerRegistration'));
+
+/**
+ @api {delete} /auth/logout logout
+
+ @apiGroup Auth
+
+ @apiDescription
+ Method ends user session and marks the token as invalid.
+
+ @apiHeaderExample {json} Header-Example:
+ {
+        "Access-Token": "token"
+ }
+
+ @apiPermission anyone with an active token
+
+ @apiSuccessExample {json} Success-Response:
+ HTTP/1.1 200 OK
+ {
+     "token": "token",
+     "status": "closed"
+   }
+ */
+router.delete('/logout', isAuthorized, require('./logout'));
+
 //
 // /**
 //  * @api {post} /auth/password/recovery password recovery

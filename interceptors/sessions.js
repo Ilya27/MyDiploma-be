@@ -4,7 +4,6 @@ const constants = require('../core/helpers/const');
 module.exports = async function (request, response, next) {
     request.account = null;
     const token = request.headers['access-token'] || request.query['access-token'];
-
     try {
         if (token) {
             const {Sessions} = require("../db/models");
@@ -42,11 +41,11 @@ function isSessionExpired(session, sessionExpirationTime) {
 }
 
 function isUserStatusBlocked(session) {
-    return session && session.subject.registrationStatus === constants.statuses.PROVIDER_REGISTRATION_STATUS.BLOCKED
+    return session && session.account.status === 'blocked' //TODO to const
 }
 
 async function closeSession(session, closedStatus = constants.statuses.SESSION_STATUS.CLOSED) {
     session.status = closedStatus;
     await session.save();
-    return {...session.toObject(), subject: null};
+    return {...session.toObject(), account: null};
 }

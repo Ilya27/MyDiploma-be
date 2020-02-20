@@ -1,7 +1,28 @@
+const {Schema} = require('mongoose');
 const ModelFactory = require('../../core/ModelFactory');
+const constants = require('../../core/helpers/const');
 const {specialMethods} = require('../modelHelpers/');
 
 const MODEL_NAME = 'Accounts';
+
+const additional = new Schema(
+    {
+        // account type=COMPANY
+        stripeVerificationStatus: {
+            type: String
+        },
+
+        iban: {
+            type: String
+        },
+
+        // account type=CUSTOMER
+        companyName: {
+            type: String
+        }
+    },
+    {_id: false}
+);
 
 const structure = {
 
@@ -21,7 +42,28 @@ const structure = {
     role: {
         type: String,
         require: true,
-        enum:['ADMIN','COMPANY','CUSTOMER']
+        enum: [
+            constants.roles.GROUPS.ADMIN,
+            constants.roles.GROUPS.COMPANY,
+            constants.roles.GROUPS.CUSTOMER
+        ]
+    },
+
+    firstName: {
+        type: String
+    },
+
+
+    lastName: {
+        type: String
+    },
+
+    avatarUrl: {
+        type: String
+    },
+
+    howFoundUs: {
+        type: String
     },
 
     stripeId: {
@@ -42,6 +84,18 @@ const structure = {
     salt: {
         type: String,
     },
+
+    status: {
+        type: String,
+        enum: [
+            constants.accountStatuses.ACTIVE,
+            constants.accountStatuses.BLOCKED
+        ],
+        default: constants.accountStatuses.ACTIVE
+    },
+
+    additional
+
 };
 
 const methods = {

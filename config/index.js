@@ -1,22 +1,27 @@
 const envs = require('../envs');
 const path = require('path');
 
-module.exports = {
+    module.exports = {
 
-    database: {
+        database: {
 
-        mongodb: {
-            link: process.env.MONGODB_URL,
-        }
+            mongodb: {
+                link: process.env.MONGODB_URL,
+            }
 
-    },
+        },
 
-    api: {
+        api: {
         urlPrefix: process.env.URL_PREFIX || '',
         defaultAdminLogin: 'admin',
         defaultAdminEmail: process.env.DEFAULT_ADMIN_EMAIL,
         defaultAdminPassword: process.env.DEFAULT_ADMIN_PASSWORD,
     },
+
+    external: {
+        stripeKey: process.env.STRIPE_KEY
+    },
+
 
     server: {
         host: 'localhost',
@@ -68,7 +73,7 @@ module.exports = {
         templates_folder:
             path.join(
                 path.dirname(require.main.filename),
-                'core', 'helpers', 'pdf_templates'
+                'core', 'helpers', 'html'
             )
     },
 };
