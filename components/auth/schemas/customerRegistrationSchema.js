@@ -1,5 +1,6 @@
 const Joi = require('@hapi/joi');
 
+const currentYear = new Date().getFullYear();
 
 module.exports = Joi.object({
     login: Joi.string(),
@@ -18,7 +19,7 @@ module.exports = Joi.object({
     card: Joi.object({
         number: Joi.string().required().empty(''),
         exp_month: Joi.number().integer().required().min(1).max(12),
-        exp_year: Joi.number().integer().required().min(2020).max(2100),
+        exp_year: Joi.number().integer().required().min(currentYear).max(2100),
         cvc: Joi.string().required().empty(''),
     }),
     additional: Joi.object({

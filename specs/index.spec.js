@@ -19,30 +19,8 @@ before(async function (done) {
     console.log('Drop TEST database');
     await connection.connection.db.dropDatabase();
 
-    const {Sessions, Accounts} = require('../db/models');
-
-    const testUser = await Accounts.insert({
-        login: 'admin',
-        password: 'admin',
-        email: 'test@gmail.com',
-        role: 'ADMIN',
-        stripeId: '111',
-        phoneNumber: '111',
-        status: "ACTIVE",
-    });
-
-    console.log(`user created`);
-
-    const Session = new Sessions({
-        status: 'ACTIVE',
-        token: TESTS_USER_TOKEN,
-        account: testUser._id,
-        creationDate: new Date().getTime(),
-
-    });
-
-    await Session.save();
-    console.log(`user session created`);
+    const insertData = require('./isertData');
+    await insertData();
 
 
     await connection.disconnect();

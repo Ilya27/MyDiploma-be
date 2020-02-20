@@ -126,6 +126,7 @@ const emptyRequiredField = {
 const accountTypesObject = {
     _id: joi.number(),
     role: joi.string(),
+    status: joi.string(),
     stripeId: joi.string(),
     email: joi.string(),
     firstName: joi.string(),
