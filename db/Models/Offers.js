@@ -9,6 +9,11 @@ const structure = {
         ref: 'Accounts'
     },
 
+    projectId: {
+        type: Number,
+        ref: 'Projects'
+    },
+
     thumbnailUrl: {
         type: String,
         require: true,
