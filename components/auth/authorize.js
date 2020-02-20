@@ -6,14 +6,12 @@ const authorizeSchema = require("./schemas/authorizeSchemas");
 module.exports = async function (request, response, next) {
     try {
 
-        let body = await authorizeSchema.validateAsync(request.body, {
-            allowUnknown: true
-        });
+        let body = await authorizeSchema.validateAsync(request.body);
         const {password, ...other} = body;
         const account = await Accounts.findOne(other);
 
         if (!account) {
-            throw new Errors('Unknown user', 404)
+            throw new Errors('', 401)
         }
 
         if (!account.equalPassword(body.password)) {
