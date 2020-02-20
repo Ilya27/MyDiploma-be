@@ -25,7 +25,7 @@ const userWrongEmail = {
 };
 
 const userWrongLogin = {
-    "login": "admin1",
+    "login": "WrongLogin",
     "password": "admin",
 };
 
@@ -42,6 +42,8 @@ const userWithoutPasswordWithLogin= {
 };
 
 
+
+
 const accountTypesObject = {
     _id: joi.number(),
     token: joi.string(),
@@ -53,7 +55,7 @@ const accountTypesObject = {
 
 const errorObject = {
     message: joi.string(),
-    stack: joi.string()
+    stack: joi.string(),
 };
 
 describe('Auth', () => {
@@ -98,11 +100,11 @@ describe('Auth', () => {
             .config(frisbyConfig)
             .post('/auth/authorize', userWithoutLoginOrEmail)
             .expectStatus(400)
-            // .expectJSONTypes(errorObject)
-            // .expectJSON('', {
-            //     stack: 'ValidationError: "login" is required',
-            //     message: '"login" is required'
-            // })
+            .expectJSONTypes(errorObject)
+            .expectJSON('', {
+                stack: 'ValidationError: "value" must contain at least one of [email, login]',
+                message: '"value" must contain at least one of [email, login]',
+            })
             .toss();
 
 
@@ -110,46 +112,43 @@ describe('Auth', () => {
             .config(frisbyConfig)
             .post('/auth/authorize', userWithoutPasswordWithEmail)
             .expectStatus(400)
-            // .expectJSONTypes(errorObject)
-            // .expectJSON('', {
-            //     stack: 'ValidationError: "password" is required',
-            //     message: '"password" is required'
-            // })
+            .expectJSONTypes(errorObject)
+            .expectJSON('', {
+                stack: 'ValidationError: "password" is required',
+                message: '"password" is required'
+            })
             .toss();
 
         frisby.create('Should be ValidationError: "password" is required')
             .config(frisbyConfig)
             .post('/auth/authorize', userWithoutPasswordWithLogin)
             .expectStatus(400)
-            // .expectJSONTypes(errorObject)
-            // .expectJSON('', {
-            //     stack: 'ValidationError: "password" is required',
-            //     message: '"password" is required'
-            // })
+            .expectJSONTypes(errorObject)
+            .expectJSON('', {
+                stack: 'ValidationError: "password" is required',
+                message: '"password" is required'
+            })
             .toss();
 
 
-        frisby.create('Should be ValidationError: Unknown user')
+        frisby.create('Should be Unauthorized')
             .config(frisbyConfig)
             .post('/auth/authorize', userWrongLogin)
-            .expectStatus(404)
-            // .expectJSONTypes(errorObject)
-            // .expectJSON('', {
-            //     stack: 'ValidationError: "password" is required',
-            //     message: '"password" is required'
-            // })
+            .expectStatus(401)
+            .expectJSONTypes(errorObject)
+            .afterJSON(error => {
+                expect(error.message).to.equal('Unauthorized');
+            })
             .toss();
 
-        frisby.create('Should be ValidationError: Unknown user')
+        frisby.create('Should be Unauthorized')
             .config(frisbyConfig)
             .post('/auth/authorize', userWrongEmail)
-            .expectStatus(404)
-            // .expectJSONTypes(errorObject)
-            // .expectJSON('', {
-            //     stack: 'ValidationError: "password" is required',
-            //     message: '"password" is required'
-            // })
+            .expectStatus(401)
+            .expectJSONTypes(errorObject)
+            .afterJSON(error => {
+                expect(error.message).to.equal('Unauthorized');
+            })
             .toss();
     });
-
 });
