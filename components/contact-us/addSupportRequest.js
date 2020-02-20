@@ -12,6 +12,8 @@ module.exports = async function (request, response, next) {
             ...body
         };
 
+
+
         if (request.session && request.session.account) {
             const {text} = request.body;
             supportRequest = {
@@ -25,10 +27,10 @@ module.exports = async function (request, response, next) {
             supportRequest = {
                 ...supportRequest,
                 account: 'unauthorized user',
-                text, email,
+                text,
+                email,
             }
         }
-
 
         mailer.sendRequestToSupport(supportRequest)
             .catch(e => {
@@ -40,7 +42,7 @@ module.exports = async function (request, response, next) {
                 }
             );
 
-        response.json({supportRequest});
+        response.json(supportRequest);
     } catch (e) {
         return next(e);
     }

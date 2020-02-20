@@ -1,8 +1,4 @@
 module.exports = {
-
-    GROUPS:{
-        ACTIVE:"ACTIVE",
-        BLOCKED:"BLOCKED",
-    }
-
+    ACTIVE: "ACTIVE",
+    BLOCKED: "BLOCKED",
 };

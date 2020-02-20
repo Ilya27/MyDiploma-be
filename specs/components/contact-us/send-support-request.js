@@ -57,6 +57,14 @@ describe('Contact Us request', () => {
             .config(frisbyConfig)
             .post('/contact-us', userUnauthorizedSupport)
             .expectStatus(200)
+/*            .expectJSON('', {
+                "supportRequest": {
+                    "account": "unauthorized user",
+                    //"createdTime": 1582193452635,
+                    "email": "mail@example.com",
+                    "text": "message text",
+                }
+            })*/
             .toss();
 
         frisby.create('support request for authorized user')

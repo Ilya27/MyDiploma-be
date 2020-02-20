@@ -28,9 +28,11 @@ before(async function (done) {
         role: 'ADMIN',
         stripeId: '111',
         phoneNumber: '111',
-        status: "active",
+        status: "ACTIVE",
     });
+
     console.log(`user created`);
+
     const Session = new Sessions({
         status: 'ACTIVE',
         token: TESTS_USER_TOKEN,
@@ -38,6 +40,7 @@ before(async function (done) {
         creationDate: new Date().getTime(),
 
     });
+
     await Session.save();
     console.log(`user session created`);
 

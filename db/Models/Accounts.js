@@ -87,8 +87,11 @@ const structure = {
 
     status: {
         type: String,
-        enum: [constants.accountStatuses.GROUPS.ACTIVE,constants.accountStatuses.GROUPS.BLOCKED],
-        default: constants.accountStatuses.GROUPS.ACTIVE
+        enum: [
+            constants.accountStatuses.ACTIVE,
+            constants.accountStatuses.BLOCKED
+        ],
+        default: constants.accountStatuses.ACTIVE
     },
 
     additional
