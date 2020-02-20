@@ -4,11 +4,7 @@ const MODEL_NAME = 'Files';
 
 const structure = {
 
-    preview: {
-        type: String,
-    },
-
-    source: {
+    fileName: {
         type: String,
     },
 
@@ -20,7 +16,7 @@ const structure = {
         type: Number
     },
 
-    url: {
+    path: {
         type: String
     },
 };
