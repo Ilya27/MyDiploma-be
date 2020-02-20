@@ -19,13 +19,7 @@ module.exports = function (app) {
 
     app.use(config.api.urlPrefix + "/offers", require("./components/offers/"));
 
-    /*
-
-        app.use(
-            config.api.urlPrefix + "/provider-requests",
-            require("./components/provider-requests/")
-        );
-    */
+    app.use(config.api.urlPrefix + "/projects", require("./components/projects/"));
 
 
     /*

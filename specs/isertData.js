@@ -13,6 +13,16 @@ module.exports = async () => {
         status: "ACTIVE",
     });
 
+    const customerUser = await Accounts.insert({
+        login: 'customer',
+        password: 'customer',
+        email: 'customer@cascom.com',
+        role: 'CUSTOMER',
+        stripeId: '111',
+        phoneNumber: '111',
+        status: "ACTIVE",
+    });
+
     console.log(`user created`);
 
     const session = new Sessions({
@@ -31,7 +41,16 @@ module.exports = async () => {
 
     });
 
+    const customerSession = new Sessions({
+        status: 'ACTIVE',
+        token: TEST_CUSTOMER_TOKEN,
+        account: customerUser._id,
+        creationDate: new Date().getTime(),
+
+    });
+
     await session.save();
     await sessionToClose.save();
+    await customerSession.save();
     console.log(`user session created`);
 };
