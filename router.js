@@ -15,13 +15,18 @@ module.exports = function(app) {
 
   app.use(config.api.urlPrefix + "/auth", require("./components/auth/"));
 
-/*
+  app.use(
+      config.api.urlPrefix + "/contact-us",
+      require("./components/contact-us/")
+  );
 
-    app.use(
-        config.api.urlPrefix + "/provider-requests",
-        require("./components/provider-requests/")
-    );
-*/
+  /*
+
+      app.use(
+          config.api.urlPrefix + "/provider-requests",
+          require("./components/provider-requests/")
+      );
+  */
 
 
     /*
