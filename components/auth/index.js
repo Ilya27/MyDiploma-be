@@ -31,6 +31,7 @@ const router = express.Router();
  *  }
  */
 router.post('/authorize', require('./authorize'));
+router.post('/registration/customer', require('./customerRegistration'));
 
 // /**
 //  * @api {delete} /auth/logout logout

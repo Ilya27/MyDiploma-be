@@ -18,6 +18,11 @@ module.exports = {
         defaultAdminPassword: process.env.DEFAULT_ADMIN_PASSWORD,
     },
 
+    external: {
+        stripeKey: process.env.STRIPE_KEY
+    },
+
+
     server: {
         host: 'localhost',
         port: process.env.APP_PORT || 3000,

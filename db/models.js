@@ -12,4 +12,5 @@ module.exports = {
     ProjectOptions:require('./Models/ProjectOptions'),
     Offers:require('./Models/Offers'),
     OfferRating:require('./Models/OfferRatings'),
+    Addresses: require('./Models/Addresses'),
 };
