@@ -7,16 +7,17 @@ const offersListSchema = require('./schemas/offersListSchema');
 
 const logic = {
     [roles.GROUPS.ADMIN]: async (request, response) => {
-
+        // todo get all
         return {};
     },
 
     [roles.GROUPS.COMPANY]: async (request, response) => {
+        // todo get offers only linked with customer projects
         return {};
     },
 
     [roles.GROUPS.CUSTOMER]: async (request, response) => {
-        // todo get offers where accountId === se
+        // todo get offers where accountId === sessions.account._id
         return {};
     },
 };
@@ -27,7 +28,7 @@ module.exports = async function (request, response, next) {
 
         const query = await offersListSchema.validateAsync(request.query);
         const pagination = ListHelper.pagination({request});
-        const { page, limit, ...searchOptions } = query;
+        const {page, limit, ...searchOptions} = query;
 
         const total = await Offers.count(searchOptions);
 
