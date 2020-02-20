@@ -1,7 +1,6 @@
 const {Accounts, Addresses} = require("../../db/models");
 const Errors = require("../../core/Errors");
 const customerRegistrationSchema = require("./schemas/customerRegistrationSchema");
-const stripe = require('stripe')('sk_test_yI8MoZjnO9tYixFkrBWYhm0m00aUxxY8r1');
 
 
 module.exports = async function (request, response, next) {
