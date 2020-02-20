@@ -30,7 +30,8 @@ module.exports = function(app) {
   app.post(
     config.api.urlPrefix + "/upload",
     isAuthorized,
-    checkGroup(constants.roles.GROUPS.ADMINS, constants.roles.GROUPS.CUSTOMERS,constants.roles.GROUPS.COMPANIES),
+    checkGroup(constants.roles.GROUPS.ADMIN, constants.roles.GROUPS.CUSTOMER,
+      constants.roles.GROUPS.COMPANY),
     require("./components/upload/")
   );
 };

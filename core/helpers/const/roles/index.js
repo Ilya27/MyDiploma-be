@@ -1,7 +1,7 @@
 module.exports = {
     GROUPS:{
-        ADMINS:"Admins",
-        CUSTOMERS:"Customers",
-        COMPANIES:"Companies",
+        ADMIN:"ADMIN",
+        CUSTOMERS:"CUSTOMERS",
+        COMPANIES:"COMPANIES",
     }
 };
