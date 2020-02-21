@@ -6,6 +6,7 @@ module.exports = {
   STATUSES: {
     ON_MODERATION: "ON_MODERATION",
     ACCEPTED: "ACCEPTED",
-    DECLINED: "DECLINED"
+    DECLINED: "DECLINED",
+    CLOSED: "CLOSED"
   }
 };
