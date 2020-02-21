@@ -8,6 +8,11 @@ module.exports = {
     typicalMethods: {
         insert: function (data) {
             let Model = this;
+
+            if(Object.keys(this.schema.paths).includes('creationDate')){
+                data['creationDate'] = new Date().getTime();
+            }
+
             let instance = new Model(data);
             return instance.save();
         },
