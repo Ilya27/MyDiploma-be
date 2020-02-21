@@ -19,7 +19,7 @@ before(async function (done) {
     console.log('Drop TEST database');
     await connection.connection.db.dropDatabase();
 
-    const insertData = require('./isertData');
+    const insertData = require('./insertData');
     await insertData();
 
 

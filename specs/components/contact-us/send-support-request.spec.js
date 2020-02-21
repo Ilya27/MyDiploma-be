@@ -35,36 +35,28 @@ describe('Contact Us request', () => {
             .config(frisbyConfig)
             .post('/contact-us', userSupportNoEmail)
             .expectStatus(400)
-            // .expectJSONTypes(errorObject)
-            // .expectJSON('', {
-            //     message: '"email" is required',
-            //     stack: 'ValidationError: "email" is required',
-            // })
+            .expectJSONTypes(errorObject)
+            .expectJSON('', {
+                message: '"email" is required',
+                stack: 'ValidationError: "email" is required',
+            })
             .toss();
 
         frisby.create('text is required for support request')
             .config(frisbyConfig)
             .post('/contact-us', userSupportNoText)
             .expectStatus(400)
-            // .expectJSONTypes(errorObject)
-            // .expectJSON('', {
-            //     message: '"text" is required',
-            //     stack: 'ValidationError: "text" is required',
-            // })
+            .expectJSONTypes(errorObject)
+            .expectJSON('', {
+                message: '"text" is required',
+                stack: 'ValidationError: "text" is required',
+            })
             .toss();
 
         frisby.create('support request for unauthorized user')
             .config(frisbyConfig)
             .post('/contact-us', userUnauthorizedSupport)
             .expectStatus(200)
-/*            .expectJSON('', {
-                "supportRequest": {
-                    "account": "unauthorized user",
-                    //"createdTime": 1582193452635,
-                    "email": "mail@example.com",
-                    "text": "message text",
-                }
-            })*/
             .toss();
 
         frisby.create('support request for authorized user')

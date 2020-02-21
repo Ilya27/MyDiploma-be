@@ -25,11 +25,5 @@ module.exports = function (app) {
     /*
          Upload
      */
-    app.post(
-        config.api.urlPrefix + "/upload",
-        isAuthorized,
-        checkGroup(constants.roles.GROUPS.ADMINS, constants.roles.GROUPS.PROVIDERS,
-            constants.roles.GROUPS.MEMBERS),
-        require("./components/upload/")
-    );
+    app.post(config.api.urlPrefix + "/upload", isAuthorized, require("./components/upload/"));
 };
