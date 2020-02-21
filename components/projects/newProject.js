@@ -1,6 +1,8 @@
 const {Accounts, ProjectOptions, Projects} = require("../../db/models");
 const Errors = require("../../core/Errors");
 const projectsSchema = require("./schemas/createProject");
+const {roles} = require("../../core/helpers/const/");
+const mailer = require("../../core/mailer/");
 
 
 module.exports = async function (request, response, next) {
@@ -20,6 +22,12 @@ module.exports = async function (request, response, next) {
     body['creationDate']= Math.floor(Number(new Date().getTime() / 1000));
 
     const result = await Projects.insert(body);
+
+    const accounts = await Accounts.find({role: roles.GROUPS.COMPANY});
+
+    accounts.forEach(account => {
+      mailer.sendMail(account.email, 'New Project', mailer._getTemplateFile(`new-project/project-suggest.html`))
+    });
 
     response.json(result, 201);
   } catch (e) {
