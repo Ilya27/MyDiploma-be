@@ -19,8 +19,6 @@ module.exports = async function (request, response, next) {
       return acc + item.amount
     }, 0);
 
-    body['creationDate']= Math.floor(Number(new Date().getTime() / 1000));
-
     const result = await Projects.insert(body);
 
     const accounts = await Accounts.find({role: roles.GROUPS.COMPANY});

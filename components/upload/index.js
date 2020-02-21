@@ -66,7 +66,6 @@ module.exports = async function (request, response, next) {
         const newFile = await Files.insert({
             fileName: file.name,
             size: file.data.length,
-            creationDate: new Date().getTime(),
             path: `/${newFileName}`,
         });
 
