@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const {isAuthorized} = require('../../middleware/');
+
 /**
  @api {get} /offers offers list
 
@@ -24,6 +26,6 @@ const router = express.Router();
  @apiPermission Providers, Members
  */
 
-router.get('/', require('./list'));
+router.get('/', isAuthorized, require('./list'));
 
 module.exports = router;
