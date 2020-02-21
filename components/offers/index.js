@@ -8,8 +8,7 @@ const {isAuthorized} = require('../../middleware/');
  @apiGroup Offers
 
  @apiDescription
- Method creates a new support request and sends it to
- configured support email.
+ list of offers
 
  @apiHeaderExample {json} Header-Example:
  {
@@ -19,11 +18,37 @@ const {isAuthorized} = require('../../middleware/');
 
  @apiParamExample {json} Request-Example:
  {
- 	    "email":"provider@provider.com",
- 	    "text":"complain complain"
-  }
+    "total": 1,
+    "totalPages": 1,
+    "limit": 10,
+    "page": 1,
+    "result": [
+        {
+            "files": [],
+            "_id": 3,
+            "accountId": 3,
+            "thumbnailUrl": "/thumbnailUrl",
+            "demoPdfUrl": "/demoPdfUrl",
+            "creationDate": 1582216927,
+            "description": "test",
+            "projectId": {
+                "status": "ACCEPTED",
+                "paymentStatus": "WAIT",
+                "winnerIds": [],
+                "projectOptions": [],
+                "_id": 4,
+                "owner": 1,
+                "email": "test@sdfsdf",
+                "name": "some name",
+                "category": "BUILDING",
+                "creationDate": 1582276363,
+                "__v": 0
+            }
+        }
+    ]
+}
 
- @apiPermission Providers, Members
+ @apiPermission All Users
  */
 
 router.get('/', isAuthorized, require('./list'));
