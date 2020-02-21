@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {isAuthorized} = require('../../middleware/');
+const {isAuthorized, checkGroup} = require('../../middleware/');
+const {roles} = require('../../core/helpers/const/');
 
 /**
  @api {get} /offers offers list
@@ -52,5 +53,11 @@ const {isAuthorized} = require('../../middleware/');
  */
 
 router.get('/', isAuthorized, require('./list'));
+
+// todo add documentation
+router.post('/', isAuthorized, checkGroup(roles.GROUPS.COMPANY), require('./create'));
+
+// todo add documentation
+router.put('/:id', isAuthorized, checkGroup(roles.GROUPS.COMPANY, roles.GROUPS.ADMIN), require('./update'));
 
 module.exports = router;
