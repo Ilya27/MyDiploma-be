@@ -57,4 +57,7 @@ router.get('/', isAuthorized, require('./list'));
 // todo add documentation
 router.post('/', isAuthorized, checkGroup(roles.GROUPS.COMPANY), require('./create'));
 
+// todo add documentation
+router.put('/:id', isAuthorized, checkGroup(roles.GROUPS.COMPANY, roles.GROUPS.ADMIN), require('./update'));
+
 module.exports = router;
