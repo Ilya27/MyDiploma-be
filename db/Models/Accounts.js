@@ -7,29 +7,35 @@ const MODEL_NAME = 'Accounts';
 
 const additional = new Schema(
     {
-        // account type=COMPANY
-        stripeVerificationStatus: {
-            type: String
+        services: {
+            type: [Number],
+            //ref Services
         },
 
-        iban: {
-            type: String
-        },
-
-        // account type=CUSTOMER
-        companyName: {
-            type: String
+        dogSize: {
+            type: [Number],
+            //ref Services DogSizes
         }
     },
     {_id: false}
 );
 
 const structure = {
+    firstName: {
+        type: String,
+        require: true,
+    },
+
+    lastName: {
+        type: String,
+        require: true,
+    },
 
     login: {
         type: String,
         unique: true,
         sparse: true,
+        require: true,
     },
 
     email: {
@@ -44,31 +50,13 @@ const structure = {
         require: true,
         enum: [
             constants.roles.GROUPS.ADMIN,
-            constants.roles.GROUPS.COMPANY,
-            constants.roles.GROUPS.CUSTOMER
+            constants.roles.GROUPS.SITTER,
+            constants.roles.GROUPS.FINDER
         ]
-    },
-
-    firstName: {
-        type: String
-    },
-
-
-    lastName: {
-        type: String
     },
 
     avatarUrl: {
         type: String
-    },
-
-    howFoundUs: {
-        type: String
-    },
-
-    stripeId: {
-        type: String,
-        require: true,
     },
 
     phoneNumber: {

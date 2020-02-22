@@ -7,27 +7,23 @@ const structure = {
 
     accountId: {
         type: Number,
+        require:true,
         ref: 'Accounts'
     },
 
     city: {
         type: String,
-    },
-
-    country: {
-        type: String,
-    },
-
-    postalCode: {
-        type: String,
+        require:true,
     },
 
     location: {
         type: String,
+        require:true,
     },
 
     state: {
         type: String,
+        require:true,
     },
 };
 

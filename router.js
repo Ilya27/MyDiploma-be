@@ -17,10 +17,6 @@ module.exports = function (app) {
 
     app.use(config.api.urlPrefix + "/contact-us", require("./components/contact-us/"));
 
-    app.use(config.api.urlPrefix + "/offers", require("./components/offers/"));
-
-    app.use(config.api.urlPrefix + "/projects", require("./components/projects/"));
-
 
     /*
          Upload
