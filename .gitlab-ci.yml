@@ -1,0 +1,35 @@
+# This file is a template, and might need editing before it works on your project.
+# Official docker image.
+#
+#stages:
+#    - build
+##before_script:
+#
+#build-develop:
+#    stage: build
+#    script:
+#        - 'cd /home/ubuntu/docker/tpa-portals-be'
+#        - 'git checkout dev'
+#        - 'git pull origin dev'
+#        - 'docker-compose down'
+#        - 'sudo docker-compose up --build -d'
+#        - 'docker image prune -f'
+#    only:
+#        - dev
+#    tags:
+#        - tpa_api_test
+#
+#build-master:
+#    stage: build
+#    script:
+#        - 'cd /home/ubuntu/docker/tpa-portals-be'
+#        - 'git checkout master'
+#        - 'git pull origin master'
+#        - 'NODE_ENV=production'
+#        - 'docker-compose down'
+#        - 'sudo docker-compose up --build -d'
+#        - 'docker image prune -f'
+#    only:
+#        - master
+#    tags:
+#        - tpa_api_prod
