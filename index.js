@@ -17,36 +17,9 @@ async function runServer() {
     const dbConnection = await require("./db/mongo.js");
     console.log(`Connected to mongoDB ${colors.font.Green}`, 'successfully');
 
-    // TODO remove later
-    const {Accounts, ProjectOptions} = require('./db/models');
-    const count = await Accounts.count();
-    if (count < 1) {
-      await Accounts.insert({
-        login: config.api.defaultAdminLogin,
-        password: config.api.defaultAdminPassword,
-        email: config.api.defaultAdminEmail,
-        role: 'ADMIN',
-        stripeId: '--',
-        phoneNumber: '--'
-      })
-    }
-    // TODO remove later
-    const countProjectOptions = await ProjectOptions.count();
-    if (countProjectOptions < 1) {
-      await ProjectOptions.insert({
-        group: 'init',
-        title: '--',
-        description: '--',
-        name: 'some',
-        amount: 5000
-      })
-    }
-
     const app = express();
 
     app.use(bodyParser.json());
-
-    global.stripe = require('stripe')(config.external.stripeKey);
 
     app.use((request, response, next) => {
       request.app_config = config;

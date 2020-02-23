@@ -15,76 +15,105 @@ const additional = new Schema(
         dogSize: {
             type: [Number],
             //ref Services DogSizes
+        },
+        salary:{
+            type: [Number],
         }
     },
     {_id: false}
 );
 
 const structure = {
-    firstName: {
-        type: String,
-        require: true,
-    },
+        firstName: {
+            type: String,
+            require: true,
+        },
 
-    lastName: {
-        type: String,
-        require: true,
-    },
+        lastName: {
+            type: String,
+            require: true,
+        },
 
-    login: {
-        type: String,
-        unique: true,
-        sparse: true,
-        require: true,
-    },
+        email: {
+            type: String,
+            require: true,
+        },
 
-    email: {
-        type: String,
-        require: true,
-        unique: true,
-        sparse: true,
-    },
+        role: {
+            type: String,
+            require: true,
+            enum: [
+                constants.roles.GROUPS.ADMIN,
+                constants.roles.GROUPS.SITTER,
+                constants.roles.GROUPS.FINDER
+            ]
+        },
 
-    role: {
-        type: String,
-        require: true,
-        enum: [
-            constants.roles.GROUPS.ADMIN,
-            constants.roles.GROUPS.SITTER,
-            constants.roles.GROUPS.FINDER
-        ]
-    },
+        avatarUrl: {
+            type: String
+        },
 
-    avatarUrl: {
-        type: String
-    },
+        phoneNumber: {
+            type: String,
+            require: true,
+        },
 
-    phoneNumber: {
-        type: String,
-        require: true,
-    },
+        password: {
+            type: String,
+            require: true,
+        },
 
-    password: {
-        type: String,
-        require: true,
-    },
+        salt: {
+            type: String,
+        },
 
-    salt: {
-        type: String,
-    },
+        address: {
+            city: {
+                type: String,
+                require: true,
+            },
+            location: {
+                type: String,
+                require: true,
+            },
+            state: {
+                type: String,
+                require: true,
+            }
+        },
 
-    status: {
-        type: String,
-        enum: [
-            constants.accountStatuses.ACTIVE,
-            constants.accountStatuses.BLOCKED
-        ],
-        default: constants.accountStatuses.ACTIVE
-    },
+        card: {
+            number: {
+                type: Number,
+                require: true,
+            },
+            exp_month: {
+                type: Number,
+                require: true,
+            },
+            exp_year: {
+                type: Number,
+                require: true,
+            },
+            cvc: {
+                type: Number,
+                require: true,
+            }
+        },
 
-    additional
+        status: {
+            type: String,
+            enum: [
+                constants.accountStatuses.ACTIVE,
+                constants.accountStatuses.BLOCKED
+            ],
+            default: constants.accountStatuses.ACTIVE
+        },
 
-};
+        additional
+
+    }
+;
 
 const methods = {
     ...{equalPassword, createPasswordHash} = specialMethods
