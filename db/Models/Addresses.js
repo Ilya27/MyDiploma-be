@@ -21,10 +21,6 @@ const structure = {
         require:true,
     },
 
-    state: {
-        type: String,
-        require:true,
-    },
 };
 
 const methods = {};

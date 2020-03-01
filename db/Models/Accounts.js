@@ -8,16 +8,16 @@ const MODEL_NAME = 'Accounts';
 const additional = new Schema(
     {
         services: {
-            type: [Number],
+            type: [String],
             //ref Services
         },
 
         dogSize: {
-            type: [Number],
+            type: [String],
             //ref Services DogSizes
         },
         salary:{
-            type: [Number],
+            type: Number,
         }
     },
     {_id: false}
@@ -53,10 +53,10 @@ const structure = {
             type: String
         },
 
-        phoneNumber: {
-            type: String,
-            require: true,
-        },
+            // phoneNumber: {
+            //     type: String,
+            //     require: true,
+            // },
 
         password: {
             type: String,
@@ -84,7 +84,7 @@ const structure = {
 
         card: {
             number: {
-                type: Number,
+                type: String,
                 require: true,
             },
             exp_month: {

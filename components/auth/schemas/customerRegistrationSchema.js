@@ -16,10 +16,9 @@ module.exports = {
         address: Joi.object({
             city: Joi.string().required().empty(''),
             location: Joi.string().required().empty(''),
-            state: Joi.string().required().empty(''),
         }).required(),
         card: Joi.object({
-            number: Joi.number().required().empty(''),
+            number: Joi.string().required().empty(''),
             exp_month: Joi.number().integer().required().min(1).max(12),
             exp_year: Joi.number().integer().required().min(currentYear).max(2100),
             cvc: Joi.number().required().empty(''),
@@ -40,10 +39,9 @@ module.exports = {
         address: Joi.object({
             city: Joi.string().required().empty(''),
             location: Joi.string().required().empty(''),
-            state: Joi.string().required().empty(''),
         }).required(),
         card: Joi.object({
-            number: Joi.number().required().empty(''),
+            number: Joi.string().required().empty(''),
             exp_month: Joi.number().integer().required().min(1).max(12),
             exp_year: Joi.number().integer().required().min(currentYear).max(2100),
             cvc: Joi.number().required().empty(''),
