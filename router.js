@@ -15,11 +15,14 @@ module.exports = function (app) {
 
     app.use(config.api.urlPrefix + "/auth", require("./components/auth/"));
 
-    app.use(config.api.urlPrefix + "/contact-us", require("./components/contact-us/"));
+    app.use(config.api.urlPrefix + "/user", require("./components/me/"));
+
+
+    // app.use(config.api.urlPrefix + "/contact-us", require("./components/contact-us/"));
 
 
     /*
          Upload
      */
-    app.post(config.api.urlPrefix + "/upload", isAuthorized, require("./components/upload/"));
+    // app.post(config.api.urlPrefix + "/upload", isAuthorized, require("./components/upload/"));
 };

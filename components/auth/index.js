@@ -2,62 +2,15 @@ const express = require('express');
 const {isAuthorized} = require('../../middleware');
 const router = express.Router();
 
-
-/**
- * @api {post} /auth/authorize authorize
- *
- * @apiGroup Auth
- *
- * @apiDescription
- * Method creates user session and returns a token.
- *
- * @apiPermission none
- *
- * @apiSuccessExample {json} Success-Response:
- *  HTTP/1.1 201 Created
- *  {
- *   "status": "active",
- *   "group": "Providers",
- *   "token": "token",
- *   "subject": {
- *       "registrationStatus": "unregistered",
- *       "updatingStatus": "none",
- *       "_id": 1,
- *       "externalId": 11111
- *   },
- *   "creationDate": 1576672943568,
- *   "_id": 3,
- *   "__v": 0
- *  }
- */
 router.post('/authorize', require('./authorize'));
 
-// TODO add documentation
+
 router.post('/registration/customer', require('./customerRegistration'));
 
-/**
- @api {delete} /auth/logout logout
 
- @apiGroup Auth
-
- @apiDescription
- Method ends user session and marks the token as invalid.
-
- @apiHeaderExample {json} Header-Example:
- {
-        "Access-Token": "token"
- }
-
- @apiPermission anyone with an active token
-
- @apiSuccessExample {json} Success-Response:
- HTTP/1.1 200 OK
- {
-     "token": "token",
-     "status": "closed"
-   }
- */
 router.delete('/logout', isAuthorized, require('./logout'));
+
+router.get('/check-email/:email', require('./checkEmail'));
 
 //
 // /**

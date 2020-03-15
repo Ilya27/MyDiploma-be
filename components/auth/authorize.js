@@ -17,7 +17,7 @@ module.exports = async function (request, response, next) {
         if (!account.equalPassword(body.password)) {
             throw new Errors('', 401)
         }
-
+        
         const session = await Sessions.insert({account});
         await session.save();
 
